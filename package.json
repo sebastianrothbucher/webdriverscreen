@@ -4,6 +4,9 @@
   "description": "",
   "scripts": {},
   "devDependencies": {
-    "chromedriver": "^2.43.1"
+    "promise.prototype.finally": "^3.1.0",
+    "chromedriver": "^2.43.1",
+    "webdriver": "^5.0.0-beta.3",
+    "source-map-support": "^0.5.9"
   }
 }
