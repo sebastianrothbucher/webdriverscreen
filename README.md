@@ -6,7 +6,28 @@ Screenshot comparisons using webdriver.io (w/out Selenium)
 
 on a Mac via ```brew install imagemagick``` or from the [ImageMagick website](https://www.imagemagick.org/script/index.php)
 
-## before that: DevTools
+## Prereq: nodeJS
+
+The program runs on node - so, you need [nodeJS](https://nodejs.org/en/)
+
+## Installing
+
+Download this repo, run ```npm install``` and customize the settings. Per se, you have
+
+```
+const URL = 'http://127.0.0.1';
+const THRESHOLD = 0.001;
+```
+
+Then, run via ```npm run crtscreen``` or ```node createscreenshot.js```
+
+## getting the screenshot automatically
+
+Run the program once to get *screen_yyyymmdd_hhmm.png*, save it as *refscreen.png*. 
+
+Every next run of the program produces *screen_yyyymmdd_hhmm.png* and *screen_yyyymmdd_hhmm_diff.png* with differences are marked in red. Also, when 
+
+## without the tool: using devtools and *magick* directly
 
 can take full-page screenshots via ```Meta-Shift-P``` + *Capture full-size screenshot*
 
@@ -26,8 +47,4 @@ Image: 1.png
 1.png=>diff.png PNG 2506x6950 2506x6950+0+0 8-bit sRGB 2.80451MiB 4.600u 0:04.740
 ```
 
-Here, approx one in a thousand pixels is substantially different (which is a lot). Also, there's a heat map being rendered. Point is now: automate that
-
-## getting the screenshot automatically
-
-here...
+Here, approx one in a thousand pixels is substantially different (which is a lot). Also, there's a diff being rendered with differences marked in red.
