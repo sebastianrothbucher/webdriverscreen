@@ -16,16 +16,17 @@ Download this repo, run ```npm install``` and customize the settings. Per se, yo
 
 ```
 const URL = 'http://127.0.0.1';
-const THRESHOLD = 0.001;
+const THRESHOLD = 0.001; // 0.1% of pixels or more are different produce a warning / non-0 exit
+const LOADTIME = 1000; // ms: wait so long for the page to load before capturing the screen
 ```
 
 Then, run via ```npm run crtscreen``` or ```node createscreenshot.js```
 
 ## getting the screenshot automatically
 
-Run the program once to get *screen_yyyymmdd_hhmm.png*, save it as *refscreen.png*. 
+Run the program once to get *screen_yyyymmdd_HHMMss.png*, save it as *refscreen.png*. You can optionally remove *refscreen.png* from *.gitignore* and check the reference into your fork.
 
-Every next run of the program produces *screen_yyyymmdd_hhmm.png* and *screen_yyyymmdd_hhmm_diff.png* with differences are marked in red. Also, when 
+Every next run of the program produces *screen_yyyymmdd_HHMMss.png* and *screen_yyyymmdd_HHMMss_diff.png* with differences are marked in red. Also, when surpassing a *THRESHOLD* (of per se one in a thousand) pixels different, it can fail. 
 
 ## without the tool: using devtools and *magick* directly
 
