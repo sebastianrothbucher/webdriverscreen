@@ -2,6 +2,10 @@
 
 Screenshot comparisons using webdriver.io (w/out Selenium)
 
+## Prereq: ImageMagick
+
+on a Mac via ```brew install imagemagick``` or from the [ImageMagick website](https://www.imagemagick.org/script/index.php)
+
 ## before that: DevTools
 
 can take full-page screenshots via ```Meta-Shift-P``` + *Capture full-size screenshot*
