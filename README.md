@@ -18,6 +18,7 @@ Download this repo, run ```npm install``` and customize the settings. Per se, yo
 const URL = 'http://127.0.0.1';
 const THRESHOLD = 0.001; // 0.1% of pixels or more are different produce a warning / non-0 exit
 const LOADTIME = 1000; // ms: wait so long for the page to load before capturing the screen
+const SCREENWIDTH = -1; // >0 to set screen size
 ```
 
 Then, run via ```npm run crtscreen``` or ```node createscreenshot.js```

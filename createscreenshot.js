@@ -2,6 +2,7 @@
 const URL = 'http://127.0.0.1';
 const THRESHOLD = 0.001; // 0.1% of pixels or more are different produce a warning / non-0 exit
 const LOADTIME = 1000; // ms: wait so long for the page to load before capturing the screen
+const SCREENWIDTH = -1; // >0 to set screen size
 const REFSCREEN = 'refscreen'; // .png
 const FUZZ = 10; // % (how much difference in color we tolerate)
 // (the program)
@@ -17,6 +18,7 @@ var returncode = 0;
 chromedriver.start(['--port=4444'], true).then(() => {
     const client = webdriverio.remote({path: '/', capabilities: {browserName: 'chrome'}});
     return client.init().then(() => client.url(URL))
+        .then(() => SCREENWIDTH > 0 ? client.setViewportSize({width: SCREENWIDTH, height: 800}) : null) // height does not matter, really
         .then(() => new Promise((resolve) => setTimeout(resolve, LOADTIME)))
         .then(() => client.getTitle().then(t => console.log('>>> title: ' + t))) // just 4 info
         .then(() => screenshot(client).then(s => { // write screen file
@@ -46,7 +48,7 @@ chromedriver.start(['--port=4444'], true).then(() => {
                         resolve(res);
                     });
                 });
-            } else if (!hasRef) {
+            } else if (fn && (!hasRef)) {
                 console.info('>>> Create ' + REFSCREEN + '.png to compare!');
             }
         })
@@ -59,7 +61,7 @@ chromedriver.start(['--port=4444'], true).then(() => {
                 } else {
                     console.log('>>> diff within limits - we have ' + diff);
                 }
-            } else if (!diffres.match(regex)) {
+            } else if (diffres && (!diffres.match(regex))) {
                 console.warn('>>> sth is strange with the magick result - can\'t use');
                 returncode = 2; // also fail (don't have accidential whites)
             }
